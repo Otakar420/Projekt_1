@@ -47,7 +47,7 @@ cisla = 0
 soucet = []
 delky_slov = dict()
 
-# získaní vstupu uzivatele a hesla
+# získaní vstupu od uzivatele
 user = input("username: ")
 password = input("password: ")
 print(oddelovac)
@@ -102,12 +102,12 @@ if user in dict_users:
         print(f"There are {cisla} numeric string.")
         print(f"The sum of all the numbers {sum(soucet)}")
         print(oddelovac)
-        print("LEN|".rjust(3), "OCCURENCES".center(max_length), "|NR.")
+        print("LEN|".rjust(3), "OCCURENCES".center(max_length) + "|NR.")
         print(oddelovac)
 
         # sloupcovy graf
         for key, value in sorted(delky_slov.items()):
-            print(str(key).rjust(3) + "|", ("#" * value).ljust(max_length), ("|" + str(value)))
+            print(str(key).rjust(3) + "|" + ("#" * value).ljust(max_length), ("|" + str(value)))
     else:
         print(f"Invalid text selection, Exiting ...")
         exit()
