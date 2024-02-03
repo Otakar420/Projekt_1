@@ -37,6 +37,67 @@ users = ["bob", "ann", "mike", "liz"]
 passwords = ["123", "pass123", "password123", "pass123"]
 dict_users = dict(zip(users, passwords))
 
-print(dict_users)
+# proměnné
+oddelovac = "-" * 40
+pocet_slov = 0
+title_pismeno = 0
+velka_pismena = 0
+mala_pismena = 0
+cisla = 0
+soucet = []
 
 # získaní vstupu uzivatele a hesla
+user = input("username: ")
+password = input("password: ")
+print(oddelovac)
+
+# zjisteni jestli uzivatel existuje a zadane heslo je správné
+if user in dict_users:
+    # zjisteni jestli zadal spravne heslo
+    if password == dict_users.get(user):
+        print(f"Welcome to the app, {user}")
+        print(f"We have {len(TEXTS)} texts to be analyzed.")
+        print(oddelovac)
+    else:
+        print(f"Wrong Password! Exiting ...")
+        exit()
+
+# ověření zda je zadaný vstup číslo, pokud ne ukončí program
+    try:
+        vyber = int(input(f"Enter a number btw. 1 and 3 to select: "))
+        print(oddelovac)
+    except ValueError:
+        print(f"Must be a number, Exiting ...")
+        exit()
+
+# ověření že zadané číslo odpovídá nějakému ze zadaných těxtů
+    if 1 <= vyber <= len(TEXTS):
+        slova = TEXTS[vyber - 1].split()
+        for slovo in slova:
+            ocistene_slovo = slovo.strip(".,!?") # očistí slovo od interpunkčních znamének
+            if ocistene_slovo: # kontroluje zda slovo není prázdné po odstranění znamének
+                pocet_slov += 1
+            if ocistene_slovo.istitle(): # vrací True pokud string začíná velkým písmenem a následují malá písmena
+                title_pismeno += 1
+            if ocistene_slovo.isupper() and ocistene_slovo.isalpha(): # vrací True pokud string obsahuje jen velká písmena
+                velka_pismena += 1
+            if ocistene_slovo.islower(): # vrací True pokud obsahuje jen malá písmena
+                mala_pismena += 1
+            if ocistene_slovo.isdigit(): # vrací True pokud obsahuje pouze číslice
+                cisla += 1
+                soucet.append(int(slovo))
+
+        print(f"There are {pocet_slov} words in selected text.")
+        print(f"There are {title_pismeno} titlecase words.")
+        print(f"There are {velka_pismena} uppercase words.")
+        print(f"There are {mala_pismena} lower words.")
+        print(f"There are {cisla} numeric string.")
+        print(f"The sum of all the numbers {sum(soucet)}")
+        print(oddelovac)
+    else:
+        print(f"Invalid text selection, Exiting ...")
+        exit()
+else:
+    print(f"unregistered user, terminating the program ...")
+    exit()
+
