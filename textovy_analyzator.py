@@ -94,7 +94,6 @@ if user in dict_users:
                 delky_slov[delka] += 1
 
         # výpis statistik
-        max_length = max(delky_slov.values())
         print(f"There are {pocet_slov} words in selected text.")
         print(f"There are {title_pismeno} titlecase words.")
         print(f"There are {velka_pismena} uppercase words.")
@@ -102,10 +101,12 @@ if user in dict_users:
         print(f"There are {cisla} numeric string.")
         print(f"The sum of all the numbers {sum(soucet)}")
         print(oddelovac)
+
+        # sloupcovy graf
+        max_length = max(delky_slov.values())
         print("LEN|".rjust(3), "OCCURENCES".center(max_length) + "|NR.")
         print(oddelovac)
 
-        # sloupcovy graf
         for key, value in sorted(delky_slov.items()):
             print(str(key).rjust(3) + "|" + ("#" * value).ljust(max_length), ("|" + str(value)))
     else:
