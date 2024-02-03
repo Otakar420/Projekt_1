@@ -38,13 +38,14 @@ passwords = ["123", "pass123", "password123", "pass123"]
 dict_users = dict(zip(users, passwords))
 
 # proměnné
-oddelovac = "-" * 40
+oddelovac = "=" * 40
 pocet_slov = 0
 title_pismeno = 0
 velka_pismena = 0
 mala_pismena = 0
 cisla = 0
 soucet = []
+delky_slov = dict()
 
 # získaní vstupu uzivatele a hesla
 user = input("username: ")
@@ -62,7 +63,7 @@ if user in dict_users:
         print(f"Wrong Password! Exiting ...")
         exit()
 
-# ověření zda je zadaný vstup číslo, pokud ne ukončí program
+    # ověření zda je zadaný vstup číslo, pokud ne ukončí program
     try:
         vyber = int(input(f"Enter a number btw. 1 and 3 to select: "))
         print(oddelovac)
@@ -70,11 +71,12 @@ if user in dict_users:
         print(f"Must be a number, Exiting ...")
         exit()
 
-# ověření že zadané číslo odpovídá nějakému ze zadaných těxtů
+    # ověření že zadané číslo odpovídá nějakému ze zadaných těxtů
     if 1 <= vyber <= len(TEXTS):
-        slova = TEXTS[vyber - 1].split()
+        slova = TEXTS[vyber - 1].split() # tímto vyberu text na danem indexu a rovnou to rozdelim na slova do list()
         for slovo in slova:
             ocistene_slovo = slovo.strip(".,!?") # očistí slovo od interpunkčních znamének
+            delka = len(ocistene_slovo)
             if ocistene_slovo: # kontroluje zda slovo není prázdné po odstranění znamének
                 pocet_slov += 1
             if ocistene_slovo.istitle(): # vrací True pokud string začíná velkým písmenem a následují malá písmena
@@ -86,7 +88,13 @@ if user in dict_users:
             if ocistene_slovo.isdigit(): # vrací True pokud obsahuje pouze číslice
                 cisla += 1
                 soucet.append(int(slovo))
+            if delka not in delky_slov:
+                delky_slov[delka] = 1
+            else:
+                delky_slov[delka] += 1
 
+        # výpis statistik
+        max_length = max(delky_slov.values())
         print(f"There are {pocet_slov} words in selected text.")
         print(f"There are {title_pismeno} titlecase words.")
         print(f"There are {velka_pismena} uppercase words.")
@@ -94,10 +102,15 @@ if user in dict_users:
         print(f"There are {cisla} numeric string.")
         print(f"The sum of all the numbers {sum(soucet)}")
         print(oddelovac)
+        print("LEN|".rjust(3), "OCCURENCES".center(max_length), "|NR.")
+        print(oddelovac)
+
+        # sloupcovy graf
+        for key, value in sorted(delky_slov.items()):
+            print(str(key).rjust(3) + "|", ("#" * value).ljust(max_length), ("|" + str(value)))
     else:
         print(f"Invalid text selection, Exiting ...")
         exit()
 else:
     print(f"unregistered user, terminating the program ...")
     exit()
-
