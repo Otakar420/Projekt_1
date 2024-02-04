@@ -2,13 +2,13 @@
 
 ## Popis
 
-Tento program slouží k rozsáhlému zpracování textu a extrakci různých informací. Je ideální pro analýzu textových dat a poskytuje užitečné statistiky, které mohou být využity pro různé účely, jako například hodnocení obsahu, analýza jazyka nebo kontrola kvality textů.
+Tento program slouží k zpracování textu a extrakci různých informací. Je ideální pro analýzu textových dat a poskytuje užitečné statistiky.
 
 ## Funkce
 
 ### 1\. Analýza textů
 
-Program má integrované úložiště pro tři texty, což umožňuje efektivní porovnání a konzistentní zpracování dat. Uživatel má možnost snadno vybrat, změnit nebo doplnit vlastní texty podle svých potřeb.
+Program obsahuje k analýze tři texty, ktere je mozne obměnit/přidat.
 
 ### 2\. Statistiky
 
