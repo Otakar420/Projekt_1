@@ -1,3 +1,5 @@
+# Textový analyzátor
+
 ## Popis
 
 Tento program slouží k rozsáhlému zpracování textu a extrakci různých informací. Je ideální pro analýzu textových dat a poskytuje užitečné statistiky, které mohou být využity pro různé účely, jako například hodnocení obsahu, analýza jazyka nebo kontrola kvality textů.
