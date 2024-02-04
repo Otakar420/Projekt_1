@@ -46,9 +46,10 @@ mala_pismena = 0
 cisla = 0
 soucet = []
 delky_slov = dict()
+pocet_textu = len(TEXTS)
 
 # získaní vstupu od uzivatele
-user = input("username: ")
+user = input("username: ").lower()
 password = input("password: ")
 print(oddelovac)
 
@@ -56,8 +57,8 @@ print(oddelovac)
 if user in dict_users:
     # zjisteni jestli zadal spravne heslo
     if password == dict_users.get(user):
-        print(f"Welcome to the app, {user}")
-        print(f"We have {len(TEXTS)} texts to be analyzed.")
+        print(f"Welcome to the app, {user.capitalize()}")
+        print(f"We have {pocet_textu} texts to be analyzed.")
         print(oddelovac)
     else:
         print(f"Wrong Password! Exiting ...")
@@ -65,7 +66,7 @@ if user in dict_users:
 
     # ověření zda je zadaný vstup číslo, pokud ne ukončí program
     try:
-        vyber = int(input(f"Enter a number btw. 1 and 3 to select: "))
+        vyber = int(input(f"Enter a number btw. 1 and {pocet_textu} to select: "))
         print(oddelovac)
     except ValueError:
         print(f"Must be a number, Exiting ...")
