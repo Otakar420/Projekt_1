@@ -74,23 +74,32 @@ if user in dict_users:
 
     # ověření že zadané číslo odpovídá nějakému ze zadaných těxtů
     if 1 <= vyber <= len(TEXTS):
-        slova = TEXTS[vyber - 1].split() # tímto vyberu text na danem indexu a rovnou to rozdelim na slova do list()
+        # tímto vyberu text na danem indexu a rovnou to rozdelim na slova do list()
+        slova = TEXTS[vyber - 1].split()
         for slovo in slova:
-            ocistene_slovo = slovo.strip(".,!?") # očistí slovo od interpunkčních znamének
+            # očistí slovo od interpunkčních znamének
+            ocistene_slovo = slovo.strip(".,!?")
             delka = len(ocistene_slovo)
-            if ocistene_slovo: # kontroluje zda slovo není prázdné po odstranění znamének
+            # pokud slovo není prázdné po odstranění znamének
+            if ocistene_slovo:
                 pocet_slov += 1
-            if ocistene_slovo.istitle(): # vrací True pokud string začíná velkým písmenem a následují malá písmena
+            # pokud slovo začíná velkým písmenem a následují malá písmena
+            if ocistene_slovo.istitle():
                 title_pismeno += 1
-            if ocistene_slovo.isupper() and ocistene_slovo.isalpha(): # vrací True pokud string obsahuje jen velká písmena
+            # pokud slovo obsahuje jen velká písmena
+            if ocistene_slovo.isupper() and ocistene_slovo.isalpha():
                 velka_pismena += 1
-            if ocistene_slovo.islower(): # vrací True pokud obsahuje jen malá písmena
+            # pokud slovo jen malá písmena
+            if ocistene_slovo.islower():
                 mala_pismena += 1
-            if ocistene_slovo.isdigit(): # vrací True pokud obsahuje pouze číslice
+            # pokud slovo obsahuje pouze číslice
+            if ocistene_slovo.isdigit():
                 cisla += 1
                 soucet.append(int(slovo))
+            # pokud delka slova neni v seznamu, tak pridej a dej 1
             if delka not in delky_slov:
                 delky_slov[delka] = 1
+            # pokud delka v seznamu je, tak přičti 1
             else:
                 delky_slov[delka] += 1
 
