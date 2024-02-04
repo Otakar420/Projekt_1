@@ -1,6 +1,6 @@
-Program, který se umí prokousat libovolně dlouhým textem a zjistit o něm různé informace.
-
-Pro vybraný text spočítá následující statistiky:
+# Program, který zpracuje text a zjistí o něm různé informace.
+* k dispozici jsou 3 texty
+* Pro vybraný text spočítá následující statistiky:
 
 1. počet slov,
 2. počet slov začínajících velkým písmenem,
