@@ -44,7 +44,7 @@ title_pismeno = 0
 velka_pismena = 0
 mala_pismena = 0
 cisla = 0
-soucet = []
+soucet = list()
 delky_slov = dict()
 pocet_textu = len(TEXTS)
 
@@ -80,6 +80,8 @@ if user in dict_users:
             # očistí slovo od interpunkčních znamének
             ocistene_slovo = slovo.strip(".,!?")
             delka = len(ocistene_slovo)
+            # vrat mi hodnotu pro klic 'delka', pokud neexistuje tak vrat '0', a poté přičti '1'
+            delky_slov[delka] = delky_slov.get(delka, 0) + 1
             # pokud slovo není prázdné po odstranění znamének
             if ocistene_slovo:
                 pocet_slov += 1
@@ -96,18 +98,12 @@ if user in dict_users:
             if ocistene_slovo.isdigit():
                 cisla += 1
                 soucet.append(int(slovo))
-            # pokud delka slova neni v seznamu, tak pridej a dej 1
-            if delka not in delky_slov:
-                delky_slov[delka] = 1
-            # pokud delka v seznamu je, tak přičti 1
-            else:
-                delky_slov[delka] += 1
 
         # výpis statistik
         print(f"There are {pocet_slov} words in selected text.")
         print(f"There are {title_pismeno} titlecase words.")
         print(f"There are {velka_pismena} uppercase words.")
-        print(f"There are {mala_pismena} lower words.")
+        print(f"There are {mala_pismena} lowercase words.")
         print(f"There are {cisla} numeric string.")
         print(f"The sum of all the numbers {sum(soucet)}")
         print(oddelovac)
@@ -119,9 +115,8 @@ if user in dict_users:
 
         for key, value in sorted(delky_slov.items()):
             print(str(key).rjust(3) + "|" + ("#" * value).ljust(max_length), ("|" + str(value)))
+
     else:
         print(f"Invalid text selection, Exiting ...")
-        exit()
 else:
     print(f"unregistered user, terminating the program ...")
-    exit()
